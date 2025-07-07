@@ -56,16 +56,12 @@
         }
 
         .page {
-            display: none;
-            min-height: 100vh;
-            box-sizing: border-box;
-            width: 100%;
-        }
-
-        .page.active {
             display: flex;
             align-items: center;
             justify-content: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+            width: 100%;
             animation: fadeIn 0.5s ease-in-out;
         }
 
@@ -74,13 +70,9 @@
             to { opacity: 1; }
         }
 
-        /* Hero Section (Landing Page) */
         .hero-section {
             width: 100%;
             background: linear-gradient(170deg, #f7f9ff 0%, #fdfcfa 100%);
-            display: flex;
-            align-items: center;
-            min-height: 100vh;
         }
         .hero-content {
             display: grid;
@@ -134,50 +126,6 @@
         .card-2 { width: 220px; height: 220px; transform: rotate(5deg); z-index: 2; }
         .card-3 { width: 160px; height: 160px; transform: rotate(12deg) translate(120px, 100px); z-index: 1; }
 
-        /* Form Styles */
-        .form-section-container { width: 100%; max-width: 800px; margin: auto; }
-        
-        #questionnaire-page.active {
-            padding: 2rem 0;
-            align-items: flex-start;
-        }
-        
-        .form-wrapper {
-            background: var(--color-surface);
-            padding: 2.5rem;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-lg);
-            width: 100%;
-            box-sizing: border-box;
-        }
-        
-        .section-header { text-align: center; margin-bottom: 3rem; }
-        .section-header p { font-size: 1.1rem; }
-        
-        .form-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
-        @media(min-width: 768px) { .form-grid { grid-template-columns: 1fr 1fr; } }
-        
-        .form-group { margin-bottom: 1rem; }
-        .form-group--full { grid-column: 1 / -1; }
-
-        .form-label { display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 1rem; }
-        
-        .form-input {
-            width: 100%; padding: 12px; border: 1px solid var(--color-border); border-radius: var(--radius-base);
-            background-color: var(--color-surface); color: var(--color-text); font-size: 1rem; box-sizing: border-box;
-        }
-        .form-input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 3px var(--color-focus-ring); }
-        .helper-text { font-size: 0.875rem; color: var(--color-text-secondary); margin-top: 0.5rem; }
-
-        .question-page-container { display: none; }
-        .question-page-container.active { display: block; }
-
-        /* Progress Bar */
-        .progress-bar-container { background-color: rgba(45, 35, 87, 0.1); border-radius: 999px; height: 10px; overflow: hidden; margin-bottom: 1rem; }
-        .progress-bar { background-color: var(--color-primary); height: 100%; transition: width 0.3s ease; }
-        .progress-info { display: flex; justify-content: space-between; font-weight: 500; color: var(--color-text); margin-bottom: 2rem; }
-
-        /* Button Styles */
         .btn {
           display: inline-flex; align-items: center; justify-content: center; padding: 14px 28px;
           border-radius: var(--radius-base); font-size: 1rem; font-weight: 600; cursor: pointer;
@@ -188,44 +136,24 @@
         .btn i { margin: 0 8px; }
         .btn--primary { background-color: var(--color-primary); color: white; border-color: var(--color-primary); }
         .btn--primary:hover { background-color: var(--color-primary-hover); border-color: var(--color-primary-hover); transform: translateY(-3px); box-shadow: var(--shadow-md); }
-        .btn--outline { background-color: transparent; color: var(--color-primary); border-color: var(--color-primary); }
-        .btn--outline:hover { background-color: var(--color-primary); color: white; }
-        .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
-
-        .form-actions {
-            display: flex; flex-direction: column-reverse; gap: 1rem; margin-top: 2rem;
-            padding-top: 1.5rem; border-top: 1px solid var(--color-border);
-        }
-        @media (min-width: 768px) { .form-actions { flex-direction: row; justify-content: space-between; } }
-        
-        #button-loader { display: none; }
-        .btn:disabled #button-loader { display: block; }
-        .btn:disabled .button-text-span { display: none; }
-        .btn:disabled .button-icon-span { display: none; }
-        
-        /* Notification Styles */
-        .notification { position: fixed; top: 20px; right: 20px; padding: 12px 20px; border-radius: var(--radius-base); color: white;
-          font-weight: 500; z-index: 1000; opacity: 0; transform: translateX(100%); transition: all 0.3s ease-in-out; box-shadow: var(--shadow-lg); }
-        .notification.show { opacity: 1; transform: translateX(0); }
-        .notification.success { background-color: #388e3c; }
-        .notification.error { background-color: #d32f2f; }
-        .notification.info { background-color: #1976d2; }
     </style>
 </head>
 <body>
 
-    <!-- PAGE 1: Landing Page / Capa -->
-    <section id="landing-page" class="page active">
+    <section id="landing-page" class="page">
         <div class="hero-section">
             <div class="container">
                 <div class="hero-content">
                     <div class="hero-text">
                         <h1>Coleta de Dados Operacionais e Financeiros</h1>
-                        <p class="hero-subtitle">Responda ao formulário para uma análise completa do desempenho da sua instituição e receba insights valiosos.</p>
-                        <button class="btn btn--primary" onclick="showPage('institutional-form')">
-                            <i class="fas fa-play"></i>
-                            Iniciar Coleta de Dados
-                        </button>
+                        <p class="hero-subtitle">Clique no botão abaixo para fazer o download do arquivo de coleta de dados e siga as instruções para preenchimento.</p>
+                        
+                        <!-- BOTÃO DE DOWNLOAD DIRETO COMO EXCEL -->
+                       <a href="https://github.com/pietro3353/Excel-data-request/raw/main/Data%20Request.xlsx" class="btn btn--primary" download>
+                        <i class="fas fa-download"></i>
+                          Iniciar Coleta de Dados
+                        </a>
+                        
                         <div class="hero-features">
                             <div class="feature-item"><i class="fas fa-hospital-alt"></i><span>Indicadores Operacionais</span></div>
                             <div class="feature-item"><i class="fas fa-chart-line"></i><span>Análise de Performance</span></div>
@@ -241,300 +169,6 @@
             </div>
         </div>
     </section>
-    
-    <!-- PAGE 2: Institutional Data Form -->
-    <section id="institutional-form" class="page">
-         <div class="form-section-container">
-            <div class="form-wrapper">
-                <div class="section-header">
-                    <h2>Dados Institucionais</h2>
-                    <p>Comece fornecendo as informações básicas sobre sua instituição.</p>
-                </div>
-                <form id="inst-form">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label class="form-label" for="institution-name">Nome da Instituição *</label>
-                            <input type="text" id="institution-name" name="Nome da Instituição *" class="form-input" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="beds-count">Número de Leitos</label>
-                            <input type="number" id="beds-count" name="Número de Leitos" class="form-input" min="0">
-                        </div>
-                         <div class="form-group form-group--full">
-                            <label class="form-label" for="respondent-name">Nome do Respondente *</label>
-                            <input type="text" id="respondent-name" name="Nome do Respondente *" class="form-input" required>
-                        </div>
-                         <div class="form-group">
-                            <label class="form-label" for="respondent-role">Cargo do Respondente *</label>
-                            <input type="text" id="respondent-role" name="Cargo do Respondente *" class="form-input" required>
-                        </div>
-                         <div class="form-group">
-                            <label class="form-label" for="contact-email">Email de Contato *</label>
-                            <input type="email" id="contact-email" name="Email de Contato *" class="form-input" required>
-                        </div>
-                    </div>
-                     <div class="form-actions">
-                        <button type="button" class="btn btn--outline" onclick="showPage('landing-page')">
-                            <i class="fas fa-arrow-left"></i> Voltar
-                        </button>
-                        <button type="button" class="btn btn--primary" onclick="startQuestionnaire()">
-                            Continuar <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
 
-    <!-- PAGE 3: Questionnaire -->
-    <section id="questionnaire-page" class="page">
-        <div class="form-section-container">
-            <form id="data-request-form" class="form-wrapper">
-                <div class="progress-bar-container">
-                    <div class="progress-bar" id="progress-bar"></div>
-                </div>
-                <div class="progress-info">
-                    <span id="progress-text">Página 1 de 3</span>
-                </div>
-                
-                <div id="questions-container">
-                    <!-- This container will hold all question pages -->
-                </div>
-
-                <div class="form-actions">
-                    <button type="button" class="btn btn--outline" id="prev-btn" onclick="changeQuestionPage(-1)">
-                        <i class="fas fa-arrow-left"></i> Anterior
-                    </button>
-                    <button type="button" class="btn btn--primary" id="next-btn">
-                        <span class="button-text-span">Próximo</span>
-                        <i class="button-icon-span fas fa-arrow-right"></i>
-                        <svg id="button-loader" style="width:20px; height:20px;" class="animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                           <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                           <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </section>
-
-    <script>
-        const questions = [
-            { id: 'taxa_ocupacao_leito', text: 'Qual a taxa média de ocupação de leito nos últimos três meses no ano?', unit: '(Unidade: %)', placeholder: 'Ex: 80' },
-            { id: 'duracao_media_permanencia', text: 'Qual a duração média de permanência nos últimos três meses do ano?', unit: '(Unidade: dias)', placeholder: 'Ex: 4' },
-            { id: 'atendimento_emergencia', text: 'Qual o número médio de atendimento na EMERGÊNCIA por mês no primeiro trimestre de 2025?', unit: '(Unidade: pacientes)', placeholder: 'Ex: 100' },
-            { id: 'atendimento_ambulatorio', text: 'Qual o número médio de atendimento no AMBULATÓRIO por mês no primeiro trimestre de 2025?', unit: '(Unidade: pacientes)', placeholder: 'Ex: 100' },
-            { id: 'internacoes', text: 'Qual o número médio de INTERNAÇÕES por mês no primeiro trimestre de 2025?', unit: '(Unidade: pacientes)', placeholder: 'Ex: 100' },
-            { id: 'cirurgias', text: 'Qual o número médio de CIRURGIAS por mês no primeiro trimestre de 2025?', unit: '(Unidade: pacientes)', placeholder: 'Ex: 100' },
-            { id: 'lead_time_emergencia_avaliacao', text: 'Qual o tempo médio (lead time) da EMERGÊNCIA - chegada do paciente até 1ª avaliação médica, no primeiro trimestre do ano?', unit: '(Unidade: minutos)', placeholder: 'Ex: 30' },
-            { id: 'lead_time_emergencia_saida', text: 'Qual o tempo médio (lead time) da EMERGÊNCIA - decisão médica até saída/transferência do paciente, no primeiro trimestre do ano?', unit: '(Unidade: minutos)', placeholder: 'Ex: 30' },
-            { id: 'lead_time_autorizacao_cirurgica', text: 'Qual o tempo médio (lead time) da AUTORIZAÇÃO CIRÚRGICA/PROCEDIMENTO no primeiro trimestre do ano?', unit: '(Unidade: dias)', placeholder: 'Ex: 10' },
-            { id: 'taxa_realizacao_aviso_cirurgico', text: 'Qual a taxa média de REALIZAÇÃO DE AVISO CIRÚRGICO no primeiro trimestre do ano?', unit: '(Unidade: %)', placeholder: 'Ex: 80' },
-            { id: 'lead_time_giro_sala', text: 'Qual o tempo médio (lead time) do GIRO DE SALA CIRÚRGICA no primeiro trimestre do ano?', unit: '(Unidade: minutos)', placeholder: 'Ex: 10' },
-            { id: 'lead_time_liberacao_leito', text: 'Qual o tempo médio (lead time) da LIBERAÇÃO DE LEITO DE INTERNAÇÃO no primeiro trimestre do ano?', unit: '(Unidade: minutos)', placeholder: 'Ex: 10' },
-            { id: 'taxa_realizacao_agendado_vs_realizado', text: 'Qual a taxa de realização de avisos cirúrgicos (agendado vs. realizado), no primeiro trimestre do ano?', unit: '(Unidade: %)', placeholder: 'Ex: 90' },
-            { id: 'taxa_aderencia_alta', text: 'Qual a taxa de aderência para alta hospitalar (alta realizada em até +/-1h do previsto), no primeiro trimestre do ano?', unit: '(Unidade: %)', placeholder: 'Ex: 85' },
-            { id: 'margem_ebitda', text: 'Qual a margem EBITDA (em %), no primeiro trimestre do ano?', unit: '(Unidade: %)', placeholder: 'Ex: 15' },
-            { id: 'taxa_glosa_contabil', text: 'Qual a taxa de glosa contábil (final), no primeiro trimestre do ano?', unit: '(Unidade: %)', placeholder: 'Ex: 1,5' },
-            { id: 'taxa_glosa_gerencial', text: 'Qual a taxa de glosa gerencial (inicial), no primeiro trimestre do ano?', unit: '(Unidade: %)', placeholder: 'Ex: 15' },
-            { id: 'prazo_medio_recebimento', text: 'Qual o prazo médio de recebimento (PMR, em dias), no primeiro trimestre do ano?', unit: '(Unidade: dias)', placeholder: 'Ex: 45' },
-            { id: 'taxa_contas_limpas', text: 'Qual a taxa de contas sem pendências (limpa) na alta administrativa, no primeiro trimestre do ano?', unit: '(Unidade: %)', placeholder: 'Ex: 90' },
-            { id: 'percentual_faturamento_competencia', text: 'Qual o percentual de faturamento realizado dentro do mês de competência no primeiro trimestre do ano?', unit: '(Unidade: %)', placeholder: 'Ex: 85' },
-            { id: 'taxa_glosa_liquida_rob', text: 'Qual a taxa de Glosa Líquida / Receita Operacional Bruta (ROB) no primeiro trimestre do ano?', unit: '(Unidade: %)', placeholder: 'Ex: 2,5' },
-            { id: 'percentual_contas_limpas_faturamento', text: 'Qual o percentual de contas limpas antes do faturamento no primeiro trimestre do ano?', unit: '(Unidade: %)', placeholder: 'Ex: 90' },
-            { id: 'giro_leito', text: 'Qual o giro de leito (número médio de ocupações por leito) no primeiro trimestre do ano?', unit: '(Unidade: número)', placeholder: 'Ex: 1,5' },
-            { id: 'percentual_limpeza_terminal', text: 'Qual o percentual de execução da limpeza terminal de sala cirúrgica no primeiro trimestre do ano?', unit: '(Unidade: %)', placeholder: 'Ex: 100' },
-            { id: 'percentual_ritos_pre_alta', text: 'Qual o percentual de cumprimento dos ritos assistenciais pré-alta no primeiro trimestre do ano?', unit: '(Unidade: %)', placeholder: 'Ex: 80' },
-            { id: 'pontualidade_pre_consulta', text: 'Qual a pontualidade na PRÉ-CONSULTA (atendimento até 5 min após o horário agendado) no primeiro trimestre do ano?', unit: '(Unidade: %)', placeholder: 'Ex: 75' },
-            { id: 'pontualidade_pos_consulta', text: 'Qual a pontualidade na PÓS-CONSULTA (registro de desfecho até 5 min após o horário previsto) no primeiro trimestre do ano?', unit: '(Unidade: %)', placeholder: 'Ex: 70' },
-            { id: 'sla_exames_imagem', text: 'Qual o percentual de cumprimento do SLA de EXAMES DE IMAGENS (pedido → execução) no primeiro trimestre do ano?', unit: '(Unidade: %)', placeholder: 'Ex: 88' },
-            { id: 'sla_exames_laboratorio', text: 'Qual o percentual de cumprimento do SLA de EXAMES DE LABORATÓRIO (pedido → resultado) no primeiro trimestre do ano?', unit: '(Unidade: %)', placeholder: 'Ex: 92' },
-        ];
-
-        let currentQuestionPage = 0;
-        const questionsPerPage = 10;
-        const totalPages = Math.ceil(questions.length / questionsPerPage);
-
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-            window.scrollTo(0,0);
-        }
-
-        function startQuestionnaire() {
-            const instForm = document.getElementById('inst-form');
-            if (!instForm.checkValidity()) {
-                 showNotification('Por favor, preencha todos os campos obrigatórios (*).', 'error');
-                 instForm.reportValidity();
-                 return;
-            }
-            buildQuestionnaireDOM();
-            showPage('questionnaire-page');
-            updateNavigation();
-        }
-
-        // --- NEW FUNCTION: Builds all question pages at once ---
-        function buildQuestionnaireDOM() {
-            const container = document.getElementById('questions-container');
-            container.innerHTML = ''; // Clear previous builds
-
-            for (let i = 0; i < totalPages; i++) {
-                const pageContainer = document.createElement('div');
-                pageContainer.className = 'question-page-container';
-                pageContainer.id = `q-page-${i}`;
-                if (i === 0) {
-                    pageContainer.classList.add('active'); // Show first page
-                }
-
-                const start = i * questionsPerPage;
-                const end = start + questionsPerPage;
-                const pageQuestions = questions.slice(start, end);
-
-                pageQuestions.forEach(q => {
-                    const formGroup = document.createElement('div');
-                    formGroup.className = 'form-group';
-                    formGroup.innerHTML = `
-                        <label class="form-label" for="${q.id}">${q.text}</label>
-                        <input type="text" id="${q.id}" name="${q.text}" class="form-input" placeholder="${q.placeholder}" inputmode="decimal">
-                        <p class="helper-text">${q.unit}. Preencha apenas números.</p>
-                    `;
-                    pageContainer.appendChild(formGroup);
-                });
-                container.appendChild(pageContainer);
-            }
-        }
-        
-        // --- UPDATED FUNCTION: Hides/shows pages instead of rebuilding ---
-        function changeQuestionPage(direction) {
-            // Hide current page
-            document.getElementById(`q-page-${currentQuestionPage}`).classList.remove('active');
-            
-            // Update page index
-            currentQuestionPage += direction;
-            
-            // Show new page
-            document.getElementById(`q-page-${currentQuestionPage}`).classList.add('active');
-            
-            updateNavigation();
-            window.scrollTo(0,0);
-        }
-
-        function updateNavigation() {
-            const progress = ((currentQuestionPage + 1) / totalPages) * 100;
-            document.getElementById('progress-bar').style.width = `${progress}%`;
-            document.getElementById('progress-text').textContent = `Página ${currentQuestionPage + 1} de ${totalPages}`;
-
-            document.getElementById('prev-btn').disabled = currentQuestionPage === 0;
-            
-            const nextBtn = document.getElementById('next-btn');
-            const btnText = nextBtn.querySelector('.button-text-span');
-            const btnIcon = nextBtn.querySelector('.button-icon-span');
-
-            if (currentQuestionPage === totalPages - 1) {
-                btnText.textContent = 'Enviar Respostas';
-                btnIcon.className = 'button-icon-span fas fa-check';
-                nextBtn.onclick = () => handleFormSubmit(); 
-            } else {
-                btnText.textContent = 'Próximo';
-                btnIcon.className = 'button-icon-span fas fa-arrow-right';
-                nextBtn.onclick = () => changeQuestionPage(1);
-            }
-        }
-        
-        function handleFormSubmit() {
-            const form = document.getElementById('data-request-form');
-            const instForm = document.getElementById('inst-form');
-            const nextBtn = document.getElementById('next-btn');
-
-            let isValid = true;
-            // Now we check ALL inputs inside the main form
-            form.querySelectorAll('input[type="text"]').forEach(input => {
-                const value = input.value.trim().replace(',', '.');
-                if (value !== '' && isNaN(parseFloat(value))) {
-                    input.style.borderColor = '#d32f2f';
-                    isValid = false;
-                } else {
-                    input.style.borderColor = 'var(--color-border)';
-                }
-            });
-
-            if (!isValid) {
-                showNotification('Por favor, insira apenas números nos campos de indicadores.', 'error');
-                return;
-            }
-            
-            nextBtn.disabled = true;
-
-            const formData = new FormData(instForm);
-            // This now collects from ALL pages because they are all in the DOM
-            new FormData(form).forEach((value, key) => formData.append(key, value));
-            
-            const data = { 'Data de Envio': new Date().toLocaleString('pt-BR') };
-            for (let [key, value] of formData.entries()) {
-                const numericValue = value.replace(',', '.');
-                data[key] = value.trim() === '' ? '' : numericValue;
-            }
-
-            const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzeeaSzKOmtp6Wg9v7GNiFvIvMZUnBSQnL5qQAFPTgFHE39Yxt4BoLd3iTcduTYf9s-GA/exec";
-            
-            showNotification('Enviando respostas...', 'info');
-
-            fetch(SCRIPT_URL, {
-                method: 'POST',
-                mode: 'cors',
-                cache: 'no-cache',
-                headers: {
-                    'Content-Type': 'text/plain;charset=utf-8',
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`A resposta da rede não foi 'ok'. Status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(res => {
-                 if (res.result === "success") {
-                    showNotification('Respostas enviadas com sucesso!', 'success');
-                    instForm.reset();
-                    form.reset();
-                    // Reset to initial state
-                    currentQuestionPage = 0; 
-                    document.getElementById('questions-container').innerHTML = ''; // Clear the built questions
-                    showPage('landing-page');
-                } else {
-                    throw new Error(res.message || 'Erro desconhecido retornado pelo servidor.');
-                }
-            })
-            .catch(error => {
-                console.error('Erro detalhado ao enviar dados:', error);
-                showNotification(`Erro ao enviar: ${error.message}. Verifique o console para mais detalhes.`, 'error');
-            })
-            .finally(() => {
-                nextBtn.disabled = false;
-            });
-        }
-        
-        function showNotification(message, type = 'info') {
-            const notification = document.createElement('div');
-            notification.className = `notification ${type}`;
-            notification.textContent = message;
-            document.body.appendChild(notification);
-            setTimeout(() => notification.classList.add('show'), 100);
-            setTimeout(() => {
-                notification.classList.remove('show');
-                setTimeout(() => {
-                    if (document.body.contains(notification)) {
-                        document.body.removeChild(notification);
-                    }
-                }, 300);
-            }, 5000);
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            showPage('landing-page');
-        });
-    </script>
 </body>
 </html>
