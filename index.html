@@ -1,174 +1,460 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coleta de Dados Operacionais e Financeiros</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        :root {
-          --color-primary: #EB6856; /* Orange */
-          --color-secondary-brand: #2D2357; /* Blue */
-          --color-background: #fdfcfa;
-          --color-surface: #ffffff;
-          --color-text: #2D2357;
-          --color-text-secondary: #5b647c;
-          --color-primary-hover: #e55a47;
-          --color-border: rgba(45, 35, 87, 0.2);
-          --color-focus-ring: rgba(235, 104, 86, 0.4);
-          --radius-base: 8px;
-          --radius-lg: 12px;
-          --shadow-md: 0 4px 10px rgba(0,0,0,0.08);
-          --shadow-lg: 0 10px 20px rgba(0,0,0,0.1);
-          --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coleta de Dados Operacionais e Financeiros</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --color-primary: #eb6856; /* Orange */
+      --color-secondary-brand: #2d2357; /* Blue */
+      --color-background: #fdfcfa;
+      --color-surface: #ffffff;
+      --color-text: #2d2357;
+      --color-text-secondary: #5b647c;
+      --color-primary-hover: #e55a47;
+      --color-border: rgba(45, 35, 87, 0.1);
+      --color-focus-ring: rgba(235, 104, 86, 0.4);
+      --color-warning-bg: #fdf0ee;
+      --radius-base: 8px;
+      --radius-lg: 12px;
+      --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.1);
+      --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+    }
 
-        html, body {
-            height: 100%;
-            overflow-x: hidden;
-        }
+    html,
+    body {
+      height: 100%;
+      overflow-x: hidden;
+    }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--color-background);
-            color: var(--color-text-secondary);
-            margin: 0;
-            padding: 0;
-        }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--color-background);
+      color: var(--color-text-secondary);
+      margin: 0;
+      padding: 0;
+    }
 
-        h1, h2, h3 {
-          font-weight: 700;
-          line-height: 1.2;
-          color: var(--color-secondary-brand);
-        }
+    h1,
+    h2,
+    h3 {
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--color-secondary-brand);
+    }
 
-        h1 { font-size: 3rem; }
-        h2 { font-size: 2rem; }
-        
-        .container {
-          width: 100%;
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 0 24px;
-        }
+    h1 {
+      font-size: 3rem;
+    }
+    h2 {
+      font-size: 2.25rem;
+    }
+    h3 {
+      font-size: 1.25rem;
+    }
 
-        .page {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            box-sizing: border-box;
-            width: 100%;
-            animation: fadeIn 0.5s ease-in-out;
-        }
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+    .page {
+      display: none;
+      min-height: 100vh;
+      box-sizing: border-box;
+      width: 100%;
+      padding: 2rem 0;
+    }
 
-        .hero-section {
-            width: 100%;
-            background: linear-gradient(170deg, #f7f9ff 0%, #fdfcfa 100%);
-        }
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 4rem;
-            align-items: center;
-            text-align: center;
-        }
-        @media (min-width: 992px) {
-            .hero-content {
-                grid-template-columns: 1fr 1fr;
-                text-align: left;
-            }
-        }
-        .hero-text {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        @media (min-width: 992px) { .hero-text { align-items: flex-start; } }
-        
-        .hero-text h1 { margin-bottom: 1.5rem; }
-        .hero-subtitle { font-size: 1.25rem; margin-bottom: 2rem; line-height: 1.7; }
-        
-        .hero-features {
-            margin-top: 2.5rem;
-            margin-bottom: 2.5rem;
-            display: flex; 
-            flex-direction: column;
-            align-items: center;
-        }
-        @media (min-width: 992px) { .hero-features { align-items: flex-start; } }
-        
-        .feature-item { display: flex; align-items: center; margin-bottom: 1rem; font-weight: 500; }
-        .feature-item i { color: var(--color-primary); font-size: 1.2rem; margin-right: 1rem; width: 24px; text-align: center; }
-        
-        .hero-visual { position: relative; height: 500px; display: none; }
-        @media (min-width: 992px) { .hero-visual { display: flex; align-items: center; justify-content: center; } }
-        
-        .visual-card {
-            position: absolute; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px);
-            border: 1px solid rgba(45, 35, 87, 0.1); border-radius: var(--radius-lg); padding: 1.5rem;
-            box-shadow: var(--shadow-lg); display: flex; flex-direction: column; align-items: center; text-align: center;
-            transition: transform 0.3s ease;
-        }
-        .visual-card:hover { transform: translateY(-10px) scale(1.05) !important; z-index: 10; }
-        .visual-card i { font-size: 2.5rem; color: var(--color-primary); margin-bottom: 1rem; line-height: 1; }
-        .visual-card h3 { font-size: 1rem; font-weight: 600; color: var(--color-secondary-brand); margin: 0; }
-        
-        .card-1 { width: 180px; height: 180px; transform: rotate(-15deg) translate(-80px, -120px); z-index: 1; }
-        .card-2 { width: 220px; height: 220px; transform: rotate(5deg); z-index: 2; }
-        .card-3 { width: 160px; height: 160px; transform: rotate(12deg) translate(120px, 100px); z-index: 1; }
+    .page.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.5s ease-in-out;
+    }
 
-        .btn {
-          display: inline-flex; align-items: center; justify-content: center; padding: 14px 28px;
-          border-radius: var(--radius-base); font-size: 1rem; font-weight: 600; cursor: pointer;
-          transition: all 250ms var(--ease-standard); border: 2px solid transparent; text-decoration: none; width: 100%;
-        }
-        @media (min-width: 768px) { .btn { width: auto; } }
+    #landing-page {
+      padding: 0;
+    }
 
-        .btn i { margin: 0 8px; }
-        .btn--primary { background-color: var(--color-primary); color: white; border-color: var(--color-primary); }
-        .btn--primary:hover { background-color: var(--color-primary-hover); border-color: var(--color-primary-hover); transform: translateY(-3px); box-shadow: var(--shadow-md); }
-    </style>
+    #instructions-page.active {
+      align-items: flex-start;
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .hero-section {
+      width: 100%;
+      background: linear-gradient(170deg, #f7f9ff 0%, #fdfcfa 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 4rem;
+      align-items: center;
+      text-align: center;
+    }
+    @media (min-width: 992px) {
+      .hero-content {
+        grid-template-columns: 1fr 1fr;
+        text-align: left;
+      }
+    }
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    @media (min-width: 992px) {
+      .hero-text {
+        align-items: flex-start;
+      }
+    }
+
+    .hero-text h1 {
+      margin-bottom: 1.5rem;
+    }
+    .hero-subtitle {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .hero-features {
+      margin-top: 2.5rem;
+      margin-bottom: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    @media (min-width: 992px) {
+      .hero-features {
+        align-items: flex-start;
+      }
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+    .feature-item i {
+      color: var(--color-primary);
+      font-size: 1.2rem;
+      margin-right: 1rem;
+      width: 24px;
+      text-align: center;
+    }
+
+    .hero-visual {
+      position: relative;
+      height: 500px;
+      display: none;
+    }
+    @media (min-width: 992px) {
+      .hero-visual {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    .visual-card {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(45, 35, 87, 0.1);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .visual-card:hover {
+      transform: translateY(-10px) scale(1.05) !important;
+      z-index: 10;
+    }
+    .visual-card i {
+      font-size: 2.5rem;
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+    .visual-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--color-secondary-brand);
+      margin: 0;
+    }
+
+    .card-1 {
+      width: 180px;
+      height: 180px;
+      transform: rotate(-15deg) translate(-80px, -120px);
+      z-index: 1;
+    }
+    .card-2 {
+      width: 220px;
+      height: 220px;
+      transform: rotate(5deg);
+      z-index: 2;
+    }
+    .card-3 {
+      width: 160px;
+      height: 160px;
+      transform: rotate(12deg) translate(120px, 100px);
+      z-index: 1;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 28px;
+      border-radius: var(--radius-base);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 250ms var(--ease-standard);
+      border: 2px solid transparent;
+      text-decoration: none;
+      width: 100%;
+    }
+    @media (min-width: 768px) {
+      .btn {
+        width: auto;
+      }
+    }
+
+    .btn i {
+      margin: 0 8px;
+    }
+    .btn--primary {
+      background-color: var(--color-primary);
+      color: white;
+      border-color: var(--color-primary);
+    }
+    .btn--primary:hover {
+      background-color: var(--color-primary-hover);
+      border-color: var(--color-primary-hover);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Instructions Page Styles */
+    .instructions-container {
+      max-width: 800px;
+      margin: auto;
+      background: var(--color-surface);
+      padding: 2rem 2.5rem 2.5rem;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      box-sizing: border-box;
+    }
+    .instructions-header {
+      text-align: center;
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .instructions-header i {
+      font-size: 2.5rem;
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+    }
+    .instructions-header h2 {
+      margin: 0;
+    }
+    .intro-paragraph {
+      text-align: center;
+      font-size: 1.1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .upload-section {
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--color-border);
+      text-align: center;
+    }
+    .upload-section h3 {
+      margin-bottom: 1rem;
+    }
+    .upload-section p {
+      font-style: italic;
+      max-width: 500px;
+      margin: 0 auto 1.5rem auto;
+    }
+    .upload-section .email-address {
+      font-weight: 600;
+      color: var(--color-primary);
+      background-color: #fef6f5;
+      padding: 10px 20px;
+      border-radius: var(--radius-base);
+      display: inline-block;
+      border: 1px solid var(--color-border);
+      user-select: all;
+    }
+  </style>
 </head>
-<body>
 
-    <section id="landing-page" class="page">
-        <div class="hero-section">
-            <div class="container">
-                <div class="hero-content">
-                    <div class="hero-text">
-                        <h1>Coleta de Dados Operacionais e Financeiros</h1>
-                        <p class="hero-subtitle">Clique no botão abaixo para fazer o download do arquivo de coleta de dados e siga as instruções para preenchimento.</p>
-                        
-                        <!-- BOTÃO DE DOWNLOAD DIRETO COMO EXCEL -->
-                       <a href="https://github.com/pietro3353/Excel-data-request/raw/main/Data%20Request.xlsx" class="btn btn--primary" download>
-                        <i class="fas fa-download"></i>
-                          Iniciar Coleta de Dados
-                        </a>
-                        
-                        <div class="hero-features">
-                            <div class="feature-item"><i class="fas fa-hospital-alt"></i><span>Indicadores Operacionais</span></div>
-                            <div class="feature-item"><i class="fas fa-chart-line"></i><span>Análise de Performance</span></div>
-                            <div class="feature-item"><i class="fas fa-dollar-sign"></i><span>Resultados Financeiros</span></div>
-                        </div>
+<body>
+  <section id="landing-page" class="page active">
+    <div class="hero-section">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1>Coleta de Dados Operacionais e Financeiros</h1>
+            <p class="hero-subtitle">
+              Clique no botão abaixo para fazer o download do arquivo de coleta de dados e siga as instruções para preenchimento.
+            </p>
+
+            <!-- BOTÃO DE DOWNLOAD DIRETO COMO EXCEL + troca de página -->
+            <a
+              href="https://github.com/pietro3353/Excel-data-request/raw/main/Data%20Request.xlsx"
+              class="btn btn--primary"
+              onclick="showPage('instructions-page')"
+              download
+            >
+              <i class="fas fa-download"></i>
+              Iniciar Coleta de Dados
+            </a>
+
+            <div class="hero-features">
+              <div class="feature-item">
+                <i class="fas fa-hospital-alt"></i><span>Indicadores Operacionais</span>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-chart-line"></i><span>Análise de Performance</span>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-dollar-sign"></i><span>Resultados Financeiros</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="visual-card card-1">
+              <i class="fas fa-procedures"></i>
+              <h3>Operações</h3>
+            </div>
+            <div class="visual-card card-2">
+              <i class="fas fa-chart-pie"></i>
+              <h3>Desempenho</h3>
+            </div>
+            <div class="visual-card card-3">
+              <i class="fas fa-file-invoice-dollar"></i>
+              <h3>Finanças</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="instructions-page" class="page">
+   <div class="instructions-container">
+            <div class="instructions-header">
+                <i class="fas fa-file-alt"></i>
+                <h2>Instruções de Preenchimento</h2>
+            </div>
+            <p class="intro-paragraph">
+                Esta planilha foi criada para coletar os principais indicadores operacionais e
+                financeiros do hospital ao longo dos próximos 12 meses. O objetivo é reunir
+                dados consistentes que possibilitem análises mais assertivas e apoiem a tomada
+                de decisão estratégica da instituição.
+            </p>
+            <div class="instructions-grid">
+                <div class="instruction-card">
+                    <div class="card-header">
+                        <i class="fas fa-list-check"></i>
+                        <h3>O que você encontrará?</h3>
                     </div>
-                    <div class="hero-visual">
-                        <div class="visual-card card-1"><i class="fas fa-procedures"></i><h3>Operações</h3></div>
-                        <div class="visual-card card-2"><i class="fas fa-chart-pie"></i><h3>Desempenho</h3></div>
-                        <div class="visual-card card-3"><i class="fas fa-file-invoice-dollar"></i><h3>Finanças</h3></div>
-                    </div>
+                    <ul>
+                        <li><strong>Indicador Resumido:</strong> o nome do indicador.</li>
+                        <li><strong>Descrição Detalhada:</strong> definição clara e exemplos.</li>
+                        <li><strong>Meses:</strong> para preenchimento mensal.</li>
+                    </ul>
                 </div>
+                <div class="instruction-card">
+                    <div class="card-header">
+                        <i class="fas fa-pencil-alt"></i>
+                        <h3>Como preencher?</h3>
+                    </div>
+                    <ul>
+                        <li>Leia atentamente a descrição de cada indicador.</li>
+                        <li>Insira apenas números ou percentuais.</li>
+                        <li>Deixe em branco caso não possua o dado.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="instruction-card warning-card">
+                 <div class="card-header">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Atenção antes de preencher</h3>
+                </div>
+                <ul>
+                    <li>Utilize sempre os resultados reais de cada mês.</li>
+                    <li>Evite duplicidades ou estimativas não fundamentadas.</li>
+                    <li>Em caso de dúvidas, entre em contato com o time responsável.</li>
+                </ul>
+            </div>
+
+            <div class="upload-section">
+                <h3>Próximo Passo: Enviar a Planilha</h3>
+                <p>
+                    Após preencher, salve o arquivo com o nome <strong>Data Request (Nome da sua Instituição)</strong> e envie para o e-mail abaixo:
+                </p>
+                <p class="email-address">
+                    pietro.lippolis@ekantika.com.br
+                </p>
             </div>
         </div>
     </section>
 
+  <script>
+    function showPage(pageId) {
+      document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+      });
+      const targetPage = document.getElementById(pageId);
+      if (targetPage) {
+        targetPage.classList.add('active');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      showPage('landing-page');
+    });
+  </script>
 </body>
 </html>
